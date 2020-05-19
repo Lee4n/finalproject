@@ -1,0 +1,5 @@
+.stationContainer {
+    display: flex;
+    flex-wrap: wrap;
+    
+}

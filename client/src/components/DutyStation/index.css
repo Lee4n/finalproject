@@ -1,0 +1,7 @@
+.dutyStation {
+    flex: 1 0 21%;
+    margin: 5px;
+    height: 400px;
+    background: blue;
+    color: white;
+}

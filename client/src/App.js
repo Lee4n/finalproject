@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import Nav from "./components/Nav/index"
 import {BrowserRouter as Router, Route} from "react-router-dom"
 import Search from "./pages/search"
 import Saved from "./pages/saved"
+import API from "../src/utils/API"
 // object={
 //   name:"lee",
 //   phone:"911"

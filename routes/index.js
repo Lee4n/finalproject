@@ -13,6 +13,16 @@ function apiRoutes(app) {
         })
     })
 
+    app.get("/api/googlebooks/:title", function(req, res) {
+        var title = req.params.title
+   
+        console.log(title)
+        axios.get("https://www.googleapis.com/books/v1/volumes?q=" + title).then(function(results) {
+            console.log(results.data)
+            res.json(results.data)  
+        })
+    })
+
     app.post("/api/books", function(req, res) {
         var newBook = req.body
         db.Book.create(newBook).then(function(results) {

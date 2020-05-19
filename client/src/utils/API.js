@@ -1,8 +1,14 @@
 import axios from "axios";
 
 export default {
-    getGoogleBooks: function(title) {
-        return axios.get("/api/googlebooks/" + title)
+    getAllDutyStations: function() {
+        return axios.get("https://data.opendatasoft.com/api/records/1.0/search/?dataset=military-bases%40public&rows=10")
+    },
+    getDutyStationName: function(name) {
+        return axios.get("https://data.opendatasoft.com/api/records/1.0/search/?dataset=military-bases%40public&rows=10&q=" + name)
+    },
+    getDutyStationLoc: function(loc) {
+        return axios.get("https://data.opendatasoft.com/api/records/1.0/search/?dataset=military-bases%40public&rows=10&q=" + loc)
     },
     saveBook: function(newBook) {
         return axios.post("/api/books", newBook)

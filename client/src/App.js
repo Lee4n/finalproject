@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import {BrowserRouter as Router, Route} from "react-router-dom"
 import Search from "./pages/search"
 import Saved from "./pages/saved"
-import API from "../src/utils/API"
+import StationView from "./pages/stationView"
+
 // object={
 //   name:"lee",
 //   phone:"911"
@@ -21,6 +22,10 @@ class App extends Component {
       <Router>
           <Route  exact path={["/", "/search"]}>
             <Search />
+          </Route>
+
+          <Route path="/station">
+            <StationView/>
           </Route>
 
           <Route exact path="/saved">

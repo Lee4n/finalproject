@@ -7,6 +7,7 @@ import API from "../utils/API";
 import ResultsList from "../components/ResultsList";
 import "../pages/search.css"
 import DutyStation from "../components/DutyStation";
+import {Link} from "react-router-dom";
 
 class Search extends Component {
 
@@ -45,10 +46,12 @@ componentDidMount() {
  };
 
   render() { 
-    console.log(this.state.apiResults)
+    console.log(this.props, "SEARCH.js")
     let dutyStations = []
     this.state.apiResults.map((index) => {
+      
       dutyStations.push(
+        
         <DutyStation data={index}/>
       )
     })

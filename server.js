@@ -18,7 +18,16 @@ routes(app)
 // API routes before this runs app.get("*", (req, res) => {
 // res.sendFile(path.join(__dirname, "./client/build/index.html")); }); Connect
 // to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://user40:aspire123@ds151997.mlab.com:51997/heroku_5tkpqj10");
- app.listen(PORT, () => {
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/duty_stations";
+mongoose.connect(MONGODB_URI, {useNewUrlParser: true});
+
+const db = mongoose.connection;
+
+db.on("error", console.error.bind(console, "connection error:"));
+db.once("open", function () {
+  console.log("Connected to Mongoose!");
+});
+
+app.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
 });

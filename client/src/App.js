@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import {BrowserRouter as Router, Route} from "react-router-dom"
 import Search from "./pages/search"
-import Saved from "./pages/saved"
 import StationView from "./pages/stationView"
 
 // object={   name:"lee",   phone:"911" } object.name object.phone ---destruct--
@@ -16,10 +15,6 @@ class App extends Component {
           </Route>
 
           <Route path="/station" component={StationView}/>
-          
-          <Route exact path="/saved">
-            <Saved/>
-          </Route>
 
       </Router>
     );

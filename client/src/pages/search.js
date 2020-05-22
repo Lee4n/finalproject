@@ -2,12 +2,10 @@ import React, {Component} from "react";
 import Nav from "../components/Nav";
 import Header from "../components/Header";
 import BookSearch from "../components/BookSearch";
-import ResultsContainer from "../components/ResultsContainer";
 import API from "../utils/API";
-import ResultsList from "../components/ResultsList";
 import "../pages/search.css"
 import DutyStation from "../components/DutyStation";
-import {Link} from "react-router-dom";
+
 
 class Search extends Component {
 
@@ -36,7 +34,7 @@ componentDidMount() {
  }
 
  handleSubmit = event => {
-     console.log("SEARCH", this.state.search)
+     
      API.getDutyStationName(this.state.search).then(results => {
          
          this.setState({
@@ -46,7 +44,7 @@ componentDidMount() {
  };
 
   render() { 
-    console.log(this.props, "SEARCH.js")
+    
     let dutyStations = []
     this.state.apiResults.map((index) => {
       

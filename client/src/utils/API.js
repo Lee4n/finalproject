@@ -10,11 +10,8 @@ export default {
     saveRating: function(newRating) {
         return axios.post("/api/ratings", newRating)
     },
-    displaySavedBooks: function() {
-        return axios.get("/api/books")
-    },
-    deleteBook: function(id) {
-        return axios.delete("/api/books/" + id)
+    getRating: function(id) {
+        return axios.get("/api/ratings/" + id)
     }
 
 }

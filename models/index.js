@@ -1,3 +1,4 @@
 module.exports = {
-    Rating: require("./rating")
+    Rating: require("./rating"),
+    User: require("./user")
 }

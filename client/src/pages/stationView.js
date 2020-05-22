@@ -36,7 +36,7 @@ class stationView extends Component {
   handleSubmit(event) {
     event.preventDefault();
     API.saveRating(this.state.formData)
-    console.log(this.state.formData)
+    
   }
 
   render() {

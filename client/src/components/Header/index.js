@@ -4,11 +4,8 @@ function Header() {
   return (
     <div className="container text-center">
       <h1 className="display-4">
-        (React) Google Books Search
+        (React) Rate My Duty Station
       </h1>
-      <p className="lead">
-        Search for and Save Books of Interest
-      </p>
     </div>
   );
 };

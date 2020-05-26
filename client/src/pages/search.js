@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import Nav from "../components/Nav";
-import Header from "../components/Header";
 import BookSearch from "../components/BookSearch";
 import API from "../utils/API";
 import "../pages/search.css"
@@ -56,8 +55,6 @@ componentDidMount() {
     return (
       <div>
         <Nav/>
-        <br/>
-        <Header/>
         <br/>
         <BookSearch  handleChange={this.handleChange} search={this.state.search} handleSubmit={this.handleSubmit}/>
         <div className="stationContainer">

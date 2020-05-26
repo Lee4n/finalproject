@@ -6,11 +6,6 @@ function Nav() {
       <a className="navbar-brand" href="/">
         Rate My Duty Station
       </a>
-      <ul className="navbar-nav">
-        <li className="nav-item">
-          <a className="nav-link" href="/">Search</a>
-        </li>
-      </ul>
     </nav>
   );
 };

@@ -1,15 +1,16 @@
 var axios = require("axios");
 var db = require("../models")
 var passport = require("passport")
+var LocalStrategy = require("passport-local").Strategy;
+
 function apiRoutes(app) {
 
   // Register User
   app
-    .post('/register', function (req, res) {
+    .post("/api/register", function (req, res) {
       var password = req.body.password;
-
       var newUser = new db.User({name: req.body.name, email: req.body.email, username: req.body.username, password: req.body.password});
-
+      console.log(req.body)
       db
         .User
         .createUser(newUser, function (err, user) {
@@ -23,9 +24,17 @@ function apiRoutes(app) {
     });
 
   // Endpoint to login
-  app.post('/login', passport.authenticate('local'), function (req, res) {
-    res.send(req.user);
-  });
+  app.post('/login', function (req, res, next) {
+    
+    console.log(req.body)
+    next()
+  }, passport.authenticate('local'), (req, res) => {
+    console.log("logged in", req.user);
+    let userInfo = {
+      username: req.user.username
+    }
+    res.send(userInfo);
+  } );
 
   // Endpoint to get current user
   app.get('/user', function (req, res) {
@@ -41,25 +50,20 @@ function apiRoutes(app) {
 
 
 
+
+
   app.post("/api/ratings", function (req, res) {
     var newRating = req.body
     db
       .Rating
       .create({siteName: req.body.siteName, siteCountry: req.body.siteCountry})
       .then(function (results) {
-        var objSiteRating = {
-          siteRep: req.body.siteRep,
-          siteLoc: req.body.siteLoc,
-          siteFacilities: req.body.siteFacilities,
-          siteSocial: req.body.siteSocial
-        }
-        db
-          .Rating
-          .findOneAndUpdate({
+        
+        db.Rating.updateOne({
             _id: results._id
           }, {
             $push: {
-              siteRating: objSiteRating
+              siteRating: newRating.siteRating
             }
           }, function (error, success) {
             if (error) {
@@ -73,10 +77,10 @@ function apiRoutes(app) {
 
   })
 
-  app.get("/api/ratings/:id", function (req, res) {
+  app.get("/api/ratings/:siteName", function (req, res) {
     db
       .Rating
-      .find({_id: req.params.id})
+      .find({siteName: req.params.siteName})
       .then(function (results) {
         res.json(results);
       });

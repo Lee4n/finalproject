@@ -1,6 +1,6 @@
 import React from "react";
 
-function BookSearch( props) {
+function SearchBar( props) {
   return (
     <div className="container clearfix shadow-lg p-3 mb-5 bg-white rounded">
       <div className="input-group mb-3">
@@ -12,4 +12,4 @@ function BookSearch( props) {
   );
 };
 
-export default BookSearch;
+export default SearchBar;

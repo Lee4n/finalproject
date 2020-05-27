@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import Nav from "../components/Nav";
-import BookSearch from "../components/BookSearch";
+import SearchBar from "../components/SearchBar";
 import API from "../utils/API";
 import "../pages/search.css"
 import DutyStation from "../components/DutyStation";
@@ -14,15 +14,6 @@ constructor(props) {
     apiResults: [],
     search: ""
   }
-}
-
-componentDidMount() {
-  API.getAllDutyStations(this.state.search).then(results => {
-         console.log(results.data.records)
-    this.setState({
-       apiResults: results.data.records
-    });
-});
 }
  
  handleChange = event => {
@@ -40,13 +31,14 @@ componentDidMount() {
             apiResults: results.data.records
          });
      });
+    //  this.props.history.push('/results')
  };
 
   render() { 
     
     let dutyStations = []
     this.state.apiResults.map((index) => {
-      
+     
       dutyStations.push(
         
         <DutyStation data={index}/>
@@ -56,7 +48,7 @@ componentDidMount() {
       <div>
         <Nav/>
         <br/>
-        <BookSearch  handleChange={this.handleChange} search={this.state.search} handleSubmit={this.handleSubmit}/>
+        <SearchBar  handleChange={this.handleChange} search={this.state.search} handleSubmit={this.handleSubmit}/>
         <div className="stationContainer">
           {dutyStations}
         </div>

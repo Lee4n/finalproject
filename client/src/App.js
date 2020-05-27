@@ -1,10 +1,11 @@
 import React, {Component} from "react";
 import {BrowserRouter as Router, Route} from "react-router-dom"
 import Search from "./pages/search"
-import StationView from "./pages/stationView"
+import stationRating from "./pages/stationRating";
+import RatingResults from "./components/RatingResults";
+import SignUp from "./components/SignUp";
+import Login from "./components/userLogin";
 
-// object={   name:"lee",   phone:"911" } object.name object.phone ---destruct--
-// const {name,phone}=object name phone
 class App extends Component {
   render() {
     return (
@@ -14,8 +15,12 @@ class App extends Component {
             <Search/>
           </Route>
 
-          <Route path="/station" component={StationView}/>
+          <Route path="/register" component={SignUp}/>
+          <Route path="/login" component={Login}/>
 
+          <Route path="/editRatings" component={stationRating}/>
+          <Route path="/station" component={RatingResults}/>
+          
       </Router>
     );
   }

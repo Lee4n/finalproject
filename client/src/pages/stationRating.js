@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import API from "../utils/API";
 
-class stationView extends Component {
+class stationRating extends Component {
 
   constructor(props) {
     super(props)
@@ -36,7 +36,7 @@ class stationView extends Component {
   handleSubmit(event) {
     event.preventDefault();
     API.saveRating(this.state.formData)
-    
+    this.props.history.goBack()
   }
 
   render() {
@@ -91,9 +91,11 @@ class stationView extends Component {
           </div>
           <input type="submit" value="Submit"/>
         </form>
+        <br/>
+        
       </div>
     )
   }
 }
 
-export default stationView;
+export default stationRating;

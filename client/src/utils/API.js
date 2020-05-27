@@ -10,8 +10,14 @@ export default {
     saveRating: function(newRating) {
         return axios.post("/api/ratings", newRating)
     },
-    getRating: function(id) {
-        return axios.get("/api/ratings/" + id)
+    getRating: function(siteName) {
+        return axios.get("/api/ratings/" + siteName)
+    },
+    createUser: function(newUser) {
+        return axios.post("/api/register", newUser)
+    },
+    userLogin: function(user) {
+        return axios.post("/login", user)
     }
 
 }

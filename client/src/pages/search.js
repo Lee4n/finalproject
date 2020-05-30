@@ -7,15 +7,30 @@ import DutyStation from "../components/DutyStation";
 
 
 class Search extends Component {
-
-constructor(props) {
-  super(props)
-  this.state = {
-    apiResults: [],
-    search: ""
-  }
+state = {
+  apiResults: [],
+  search: "",
+  currentUser: ""
 }
- 
+  
+  componentDidMount() {
+    API.getCurrentUser().then((results) => {
+     
+        console.log(results.data, "user")
+        this.setState({
+          currentUser:  results.data.username
+        })
+      
+   
+    })
+  }
+
+  handleLogOut = () => {
+    API.userLogOut().then((results) => {
+      window.location.href = "/"
+    })
+  }
+
  handleChange = event => {
          const {name, value} = event.target;
          this.setState({
@@ -26,12 +41,10 @@ constructor(props) {
  handleSubmit = event => {
      
      API.getDutyStationName(this.state.search).then(results => {
-         
-         this.setState({
-            apiResults: results.data.records
+        this.setState({
+          apiResults: results.data.records
          });
      });
-    //  this.props.history.push('/results')
  };
 
   render() { 
@@ -41,12 +54,12 @@ constructor(props) {
      
       dutyStations.push(
         
-        <DutyStation data={index}/>
+        <DutyStation data={index} setState={this.props.setState}/>
       )
     })
     return (
       <div>
-        <Nav/>
+        <Nav isLoggedIn={this.props.isLoggedIn} username={this.state.currentUser}  handleLogOut={this.handleLogOut}/>
         <br/>
         <SearchBar  handleChange={this.handleChange} search={this.state.search} handleSubmit={this.handleSubmit}/>
         <div className="stationContainer">

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
-import stationRating from "../../pages/stationRating";
+import StationRating from "../../pages/stationRating";
 import {Link} from "react-router-dom";
 
 class RatingResults extends Component {
@@ -13,9 +13,9 @@ class RatingResults extends Component {
       }
 
       componentDidMount() {
-          console.log(this.props.location.state.data)
+          
           let this2 = this
-          API.getRating(this.props.location.state.data.fields.site_name).then(function(results) {
+          API.getRating(this.props.siteName).then(function(results) {
               console.log(results.data)
               console.log(this2.state)
               this2.setState({
@@ -65,8 +65,8 @@ class RatingResults extends Component {
                     {ratings}
                 </tr>
             </table>
-            <stationRating/>
-            <Link to={{pathname: "/editRatings", state: {data: this.props.location.state.data}}}>
+            {/* <StationRating/> */}
+            <Link to="/editRatings">
                 <button type="button">
                     Rate Me!
                 </button>

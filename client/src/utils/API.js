@@ -18,6 +18,12 @@ export default {
     },
     userLogin: function(user) {
         return axios.post("/login", user)
+    },
+    getCurrentUser: function() {
+        return axios.get("/user")
+    },
+    userLogOut: function() {
+        return axios.get("/logout")
     }
 
 }

@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 import API from "../../utils/API";
+import Nav from "../Nav";
+import {Redirect} from "react-router-dom";
 
 class SignUp extends Component {
     constructor(props) {
@@ -8,7 +10,8 @@ class SignUp extends Component {
             name: '',
             email: '',
             username: '',
-            password: ''
+            password: '',
+            redirect: null
         };
     
         this.handleChange = this.handleChange.bind(this);
@@ -21,7 +24,7 @@ class SignUp extends Component {
     
       handleSubmit(event) {
         let {name, email, username, password} = this.state;
-
+        const self = this;
         let newUser = {
             name: name,
             email: email,
@@ -30,12 +33,18 @@ class SignUp extends Component {
         }
         event.preventDefault();
         API.createUser(newUser).then(function(res) {
-            API.userLogin(res)
+            self.setState({
+              redirect: "/login"
+            })
         });
       }
   render() {
+    if (this.state.redirect) {
+      return <Redirect to={this.state.redirect}/>
+    }
     return (
       <div>
+        <Nav isLoggedIn={this.props.isLoggedIn}/>
         <form onSubmit={this.handleSubmit}>
           <div class="form-group row">
             <label class="col-sm-2 col-form-label">Name</label>

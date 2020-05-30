@@ -1,18 +1,33 @@
 import React from "react";
-import "../DutyStation/index.css"
 import {Link} from "react-router-dom"
+import './index.css'
 
 function DutyStation(props) {
+  const handleStation = (site_name) => {
+    // console.log(site_name)
+    props.setState({
+      site: site_name
+    })
+  }
+  return (
 
-    return (
-      <div className="dutyStation">
-        <Link to={{pathname: "/station", state: {data: props.data}}}>
-          <div className="card-body">
-            {props.data.fields.site_name}
-          </div>
+    <div className="container-fluid mb-2">
+      <ul className="list-group">
+        <Link
+          to="/station"
+          style={{
+          textDecoration: 'none'
+        }}
+          onClick=
+          {() => handleStation(props.data.fields.site_name)}>
+          <li className="list-group-item bg-secondary text-white">
+            <span className="nounderline siteLink">{props.data.fields.site_name}</span>
+          </li>
         </Link>
-      </div>
-    );
-  };
-  
-  export default DutyStation;
+      </ul>
+    </div>
+
+  );
+};
+
+export default DutyStation;

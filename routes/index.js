@@ -44,7 +44,8 @@ function apiRoutes(app) {
   // Endpoint to logout
   app.get('/logout', function (req, res) {
     req.logout();
-    res.send(null)
+    console.log("LOGGED OUT")
+    res.json(req.user)
   });
 
 

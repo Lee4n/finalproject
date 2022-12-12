@@ -27,7 +27,7 @@
     "cancan": "^3.1.0",
     "cookie-parser": "~1.4.3",
     "eslint-plugin-react-hooks": "^4.0.2",
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "express-session": "~1.14.1",
     "if-env": "^1.0.4",
     "mini-create-react-context": "^0.4.0",
